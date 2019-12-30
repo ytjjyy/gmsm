@@ -23,7 +23,7 @@ import (
 	"crypto/cipher"
 	"crypto/elliptic"
 	"crypto/rand"
-	"crypto/sha512"
+	"crypto/sha256"
 	"encoding/asn1"
 	"encoding/binary"
 	"errors"
@@ -179,7 +179,7 @@ func Sign(priv *PrivateKey, hash []byte) (r, s *big.Int, err error) {
 	}
 
 	// Initialize an SHA-512 hash context; digest ...
-	md := sha512.New()
+	md := sha256.New()
 	md.Write(priv.D.Bytes()) // the private key,
 	md.Write(entropy)        // the entropy,
 	md.Write(hash)           // and the input hash;
